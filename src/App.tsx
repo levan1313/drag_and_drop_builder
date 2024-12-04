@@ -1,11 +1,27 @@
-function App() {
+import { Canvas } from './components';
+import LeftSideBar from './components/builder/LeftSideBar';
+import RightSidebar from './components/builder/RightSideBar/RightSidebar';
+import TextareaComponent from './components/ui/TextAreaWithAutocomplete';
+import { EditorProvider } from './providers/EditorProvider';
+import ErrorBoundary from './providers/ErrorBoundary';
 
+function App() {
   return (
-    <>
-       <div className="flex items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold text-blue-600">Hello, Tailwind CSS!</h1>
-    </div>
-    </>
+    <ErrorBoundary>
+      <h1 className="text-center text-lg font-bold">
+        this is builder with craft js
+      </h1>
+      {/* <TextareaComponent suggestions={['sdasd', "asdasds", "asdasdad"]}/> */}
+      <EditorProvider>
+        <div className="flex h-screen">
+          <LeftSideBar />
+          <div className="flex-1 bg-gray-50 p-4">
+            <Canvas />
+          </div>
+          <RightSidebar/>
+        </div>
+      </EditorProvider>
+    </ErrorBoundary>
   );
 }
 
